@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/style.css" />
+		<title>Meme Generator</title>
+	</head>
+	<body onload="onInit()">
+		<header class="main-header">
+			<h2 data-trans="meme-generator">Meme Generator</h2>
+			<nav>
+				<ul>
+					<li class="gallery-li active">
+						<button class="nav-button" data-trans="gallery" onclick="onInit();">
+							Gallery
+						</button>
+					</li>
+					<li class="saved-li">
+						<button
+							class="nav-button"
+							data-trans="saved"
+							onclick="onSavedInit();"
+						>
+							Saved
+						</button>
+					</li>
+					<li>
+						<button
+							class="nav-button"
+							data-trans="randomize"
+							onclick="onRandomClicked();"
+						>
+							Randomize
+						</button>
+					</li>
+				</ul>
+			</nav>
+			<input
+				type="text"
+				placeholder="Text here"
+				oninput="onSetText(this.value)"
+			/>
+			<!-- <button class="nav-hamburger" onclick="onToggleNavOpen()">
+				<i class="fa-solid fa-bars"></i>
+			</button> -->
+			<!-- <select class="language-select" onchange="onSetLang(this.value)">
+				<option value="en">English</option>
+				<option value="he">עברית</option>
+			</select> -->
+		</header>
+		<div class="canvas-container">
+			<canvas width="450" height="450" onclick="onCanvasClick(event)"></canvas>
+		</div>
+		<section class="select-img-container">
+			<h3>Select an image</h3>
+			<img src="img/1.jpg" onclick="onSelectImage(this)" class="square" />
+			<img src="img/2.jpg" onclick="onSelectImage(this)" />
+			<img src="img/3.jpg" onclick="onSelectImage(this)" />
+		</section>
+		<script
+			src="https://kit.fontawesome.com/b3200a873f.js"
+			crossorigin="anonymous"
+		></script>
+		<script src="js/service/util.service.js"></script>
+		<script src="js/service/storage.service.js"></script>
+		<script src="js/service/meme.service.js"></script>
+		<script src="js/service/meme.gallery.service.js"></script>
+		<script src="js/meme.controller.js"></script>
+	</body>
+</html>
