@@ -233,7 +233,7 @@ function renderSelectedImage(imgId) {
 	}
 }
 
-function addText(text) {
+function addText() {
 	const textInput = document.getElementById("textToAdd")
 	const colorInput = document.getElementById("textColorPicker")
 
