@@ -1,83 +1,88 @@
 "use strict"
-//CONTROLLER
 
 function onInit() {
 	gElCanvas = document.querySelector("canvas")
 	gCtx = gElCanvas.getContext("2d")
-	window.addEventListener("resize", resizeCanvas)
-	resizeCanvas()
+	addEventListeners()
 }
 
-function resizeCanvas() {
-	const container = document.querySelector(".canvas-container")
-	gElCanvas.width = container.offsetWidth
-	gElCanvas.height = container.offsetHeight
+function onSetColor(color) {
+	setColor(color)
 }
-function onDrawImage(elImage) {
-	var imgSrc = elImage.src
-
-	updateSelectedImgId(imgSrc)
-
-	drawImage(imgSrc, function () {
-		onDrawText()
-	})
-}
-function onDrawText() {
-	drawText()
+function onDecreaseFontSize() {
+	decreaseFontSize()
 }
 
-function onGetMeme() {
-	var meme = getCurrImg()
-	console.log(meme)
+function onImgSelect(imgId) {
+	imgSelect(imgId)
 }
 
-function onSelectImage(elImage) {
-	var imgSrc = elImage.src
-	updateSelectedImgId(imgSrc)
-	onDrawImage(elImage)
-}
-function onSetText(value) {
-	setText(value)
+function onIncreaseFontSize() {
+	increaseFontSize()
 }
 
-function findClickedTextIndex(pos) {
-	for (let i = 0; i < gMeme.lines.length; i++) {
-		const line = gMeme.lines[i]
-		const textWidth = gCtx.measureText(line.txt).width
-
-		if (
-			pos.x >= line.x &&
-			pos.x <= line.x + textWidth &&
-			pos.y >= line.y - line.size &&
-			pos.y <= line.y
-		) {
-			return i
-		}
-	}
-	return null
+function onTextAlign(align) {
+	textAlign(align)
 }
-function onCanvasClick(ev) {
+
+function onLineTextInput(text) {
+	lineTextInput(text)
+}
+
+function onChangeFont() {
+	changeFont()
+}
+
+function onEditLine(lineIdx) {
+	editLine(lineIdx)
+}
+
+function addEventListeners() {
+	gElCanvas.addEventListener("mousedown", onMouseDown)
+	gElCanvas.addEventListener("mousemove", onMouseMove)
+	document.addEventListener("mouseup", onMouseUp)
+}
+
+function onMouseDown(ev) {
 	const meme = getMeme()
-	const pos = getEvPos(ev)
-	if (isTextClicked(pos)) {
-		meme.selectedLineIdx = findClickedTextIndex(pos)
-	} else {
-		meme.selectedLineIdx = null
+	const { offsetX, offsetY } = ev
+	console.log("Mouse down event triggered.")
+	const clickedLineIdx = getClickedLineIdx(offsetX, offsetY)
+
+	if (clickedLineIdx !== -1) {
+		isDragging = true
+		dragStartX = offsetX
+		dragStartY = offsetY
+		meme.selectedLineIdx = clickedLineIdx
 	}
 }
 
-function isTextClicked(clickedPos) {
+function onMouseMove(ev) {
 	const meme = getMeme()
-	const line = meme.lines[meme.selectedLineIdx]
-	if (!line) return false
+	if (isDragging) {
+		const { offsetX, offsetY } = ev
+		console.log("Mouse move event triggered.")
+		const dx = offsetX - dragStartX
+		const dy = offsetY - dragStartY
 
-	gCtx.font = `${line.size}px Arial`
-	const textWidth = gCtx.measureText(line.txt).width
+		meme.lines[meme.selectedLineIdx].x += dx
+		meme.lines[meme.selectedLineIdx].y += dy
 
-	return (
-		clickedPos.x >= line.x &&
-		clickedPos.x <= line.x + textWidth &&
-		clickedPos.y >= line.y - line.size &&
-		clickedPos.y <= line.y
-	)
+		dragStartX = offsetX
+		dragStartY = offsetY
+
+		renderCanvas()
+	}
+}
+
+function onMouseUp() {
+	isDragging = false
+}
+
+function onAddSticker(emoji) {
+	addSticker(emoji)
+}
+
+function onSelectImage(id) {
+	selectImage(id)
 }

@@ -1,0 +1,79 @@
+* {
+	box-sizing: border-box;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+}
+
+.image-selector {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.lane-container {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 20px;
+	background-color: #f0f4f8; /* Blueish background color */
+	padding: 20px;
+	border-radius: 8px;
+}
+
+.canvas-lane {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	padding: 10px;
+	background-color: #ffffff; /* White background color */
+}
+
+.controls-lane {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.text-control {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.buttons {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #f0f4f8; /* Background color for the button container */
+	padding: 20px;
+	border: 2px solid #3b82f6; /* Border for the button container */
+	border-radius: 10px;
+}
+.buttons button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px;
+	margin: 5px;
+	border: none;
+	cursor: pointer;
+	background-size: contain;
+}
+#canvas-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #f0f4f8; /* Background color for the canvas container */
+	padding: 20px;
+	border: 2px solid #3b82f6; /* Border for the canvas container */
+	border-radius: 10px;
+	margin-top: 20px;
+}

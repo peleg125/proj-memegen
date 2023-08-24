@@ -1,92 +1,235 @@
-"use strict"
-//SERVICE
-var gImgs = [{ id: 1, url: "img/1.jpg", keywords: ["funny", "cat"] }]
+// Your global variables
+var gImgs = [
+	{ id: 1, url: "img/1.jpg", keywords: ["funny", "cat"] },
+	{ id: 2, url: "img/2.jpg", keywords: ["funny"] },
+	{ id: 3, url: "img/3.jpg", keywords: ["cat"] },
+	{ id: 4, url: "img/4.jpg", keywords: ["cat"] },
+	{ id: 5, url: "img/5.jpg", keywords: ["cat"] },
+	{ id: 6, url: "img/6.jpg", keywords: ["cat"] },
+	{ id: 7, url: "img/7.jpg", keywords: ["cat"] },
+	{ id: 8, url: "img/8.jpg", keywords: ["cat"] },
+	{ id: 9, url: "img/9.jpg", keywords: ["cat"] },
+	{ id: 10, url: "img/10.jpg", keywords: ["cat"] },
+	{ id: 11, url: "img/11.jpg", keywords: ["cat"] },
+]
 var gMeme = {
-	selectedImgId: 1,
-	selectedLineIdx: 0,
+	selectedImgId: null,
+	selectedLineIdx: null,
 	lines: [],
 }
+let isDragging = false
+let dragStartX, dragStartY
 var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
-let gElCanvas
-let gCtx
-const TOUCH_EVS = ["touchstart", "touchmove", "touchend"]
-
-function drawText() {
-	gMeme.lines.forEach(function (line) {
-		gCtx.font = line.size + "px Arial"
-		gCtx.fillStyle = line.color
-		var verticalPosition = line.size + 10
-		gCtx.fillText(line.txt, 10, verticalPosition)
-	})
-}
-
-function drawImage(imgSrc, callback) {
-	var img = new Image()
-	img.src = imgSrc
-	img.onload = function () {
-		gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-		callback()
-	}
-}
+var gElCanvas
+var gCtx
 
 function getMeme() {
 	return gMeme
 }
-
-function getImgById(id) {
-	return gImgs.find((img) => img.id === id)
+function getImages() {
+	return gImgs
 }
-function getCurrImg() {
-	return getImgById(gMeme.selectedImgId)
+function setLineTxt(newText) {
+	gMeme.lines[gMeme.selectedLineIdx].txt = newText
 }
 
-function createText(pos, txt = "New Text") {
-	const newLine = {
-		txt,
+function addLine() {
+	gMeme.lines.push({
+		txt: "New line",
 		size: 20,
-		color: "blue",
-		x: pos.x,
-		y: pos.y,
-	}
-	gMeme.lines.push(newLine)
-	gMeme.selectedLineIdx = gMeme.lines.length - 1
+		color: "black",
+		x: 50,
+		y: 150,
+		width: 0,
+		height: 20,
+	})
 }
 
-function updateSelectedImgId(imgSrc) {
-	var selectedImg = gImgs.find((img) => img.url === imgSrc)
-	if (selectedImg) {
-		gMeme.selectedImgId = selectedImg.id
-	}
+function switchLine() {
+	gMeme.selectedLineIdx = (gMeme.selectedLineIdx + 1) % gMeme.lines.length
 }
-function setText(value) {
-	if (gMeme.selectedLineIdx !== null && gMeme.lines[gMeme.selectedLineIdx]) {
-		gMeme.lines[gMeme.selectedLineIdx].txt = value
-	} else {
-		const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
-		gMeme.lines.push({
-			txt: value,
-			size: 20,
-			color: "blue",
-			x: center.x,
-			y: center.y,
-		})
-		gMeme.selectedLineIdx = gMeme.lines.length - 1
-	}
-}
-function getEvPos(ev) {
-	let pos = {
-		x: ev.offsetX,
-		y: ev.offsetY,
-	}
 
-	if (TOUCH_EVS.includes(ev.type)) {
-		ev.preventDefault()
-		ev = ev.changedTouches[0]
-		pos = {
-			x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-			y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+function setSelectedLine(x, y) {
+	for (var i = 0; i < gMeme.lines.length; i++) {
+		var line = gMeme.lines[i]
+		if (
+			x >= line.x &&
+			x <= line.x + line.width &&
+			y >= line.y - line.height &&
+			y <= line.y
+		) {
+			gMeme.selectedLineIdx = i
+			return
 		}
 	}
-	console.log(pos)
-	return pos
+}
+
+function onDeleteLine() {
+	if (gMeme.selectedLineIdx !== null) {
+		gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+		gMeme.selectedLineIdx = null
+		renderCanvas()
+	}
+}
+
+function onDownloadImage() {
+	const canvasData = canvas.toDataURL("image/png")
+
+	const downloadLink = document.createElement("a")
+	downloadLink.href = canvasData
+	downloadLink.download = "meme.png"
+
+	document.body.appendChild(downloadLink)
+	downloadLink.click()
+	document.body.removeChild(downloadLink)
+}
+
+function drawText() {
+	gMeme.lines.forEach((line, idx) => {
+		gCtx.font = `${line.size}px ${line.bold ? "bold " : ""}Arial`
+		gCtx.fillStyle = line.color
+		gCtx.textAlign = line.align
+
+		gCtx.fillText(line.txt, line.x, line.y)
+
+		if (gMeme.selectedLineIdx === idx) {
+			gCtx.lineWidth = 2 //
+			gCtx.strokeStyle = "red"
+			gCtx.strokeRect(
+				line.x - 5,
+				line.y - line.size,
+				gCtx.measureText(line.txt).width + 10,
+				line.size + 10
+			)
+		}
+	})
+}
+
+function getRandomXPosition() {
+	return Math.random() * gElCanvas.width
+}
+
+function getRandomYPosition() {
+	return Math.random() * gElCanvas.height
+}
+
+function renderCanvas() {
+	gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+
+	if (gMeme.selectedImgId) {
+		renderSelectedImage(gMeme.selectedImgId)
+	}
+}
+function setColor(color) {
+	if (gMeme.selectedLineIdx !== null && gMeme.lines[gMeme.selectedLineIdx]) {
+		gMeme.lines[gMeme.selectedLineIdx].color = color
+		renderCanvas()
+	}
+}
+
+function decreaseFontSize() {
+	if (gMeme.selectedLineIdx !== null && gMeme.lines[gMeme.selectedLineIdx]) {
+		gMeme.lines[gMeme.selectedLineIdx].size -= 5
+		renderCanvas()
+	}
+}
+
+function imgSelect(imgId) {
+	gMeme.selectedImgId = imgId
+	renderMeme()
+}
+
+function increaseFontSize() {
+	if (gMeme.selectedLineIdx !== null && gMeme.lines[gMeme.selectedLineIdx]) {
+		gMeme.lines[gMeme.selectedLineIdx].size += 5
+		renderCanvas()
+	}
+}
+function textAlign(align) {
+	if (gMeme.selectedLineIdx !== null && gMeme.lines[gMeme.selectedLineIdx]) {
+		gMeme.lines[gMeme.selectedLineIdx].align = align
+		renderCanvas()
+	}
+}
+
+function lineTextInput(text) {
+	if (gMeme.selectedLineIdx !== null && gMeme.lines[gMeme.selectedLineIdx]) {
+		gMeme.lines[gMeme.selectedLineIdx].txt = text
+		renderCanvas()
+	}
+}
+
+function changeFont() {
+	if (gMeme.selectedLineIdx !== null && gMeme.lines[gMeme.selectedLineIdx]) {
+		const fonts = [
+			"Arial",
+			"Verdana",
+			"Times New Roman",
+			"Courier New",
+			"Impact",
+		]
+		const currentFont = gMeme.lines[gMeme.selectedLineIdx].font || "Arial"
+		const currentIndex = fonts.indexOf(currentFont)
+		const nextIndex = (currentIndex + 1) % fonts.length
+		gMeme.lines[gMeme.selectedLineIdx].font = fonts[nextIndex]
+		renderCanvas()
+	}
+}
+
+function getClickedLineIdx(x, y) {
+	for (let i = gMeme.lines.length - 1; i >= 0; i--) {
+		const line = gMeme.lines[i]
+		gCtx.font = `${line.size}px Arial`
+		const textWidth = gCtx.measureText(line.txt).width
+
+		const startX = line.x - textWidth / 2
+		const endX = line.x + textWidth / 2
+		const startY = line.y - line.size
+		const endY = line.y
+
+		if (x >= startX && x <= endX && y >= startY && y <= endY) {
+			return i
+		}
+	}
+	return -1
+}
+
+function editLine(lineIdx) {
+	gMeme.selectedLineIdx = lineIdx
+	renderCanvas()
+}
+
+function addSticker(emoji) {
+	const newLine = {
+		txt: emoji,
+		size: 40,
+		color: "#ffffff",
+		x: getRandomXPosition(),
+		y: getRandomYPosition(),
+	}
+
+	gMeme.lines.push(newLine)
+	renderCanvas()
+}
+
+function selectImage(id) {
+	gMeme.selectedImgId = gImgs.find((img) => img.id === id).id
+	console.log(gMeme.selectedImgId)
+	renderCanvas()
+}
+
+function renderSelectedImage(imgId) {
+	const img = new Image()
+
+	img.onload = function () {
+		gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+		drawText()
+	}
+
+	img.src = gImgs.find((img) => img.id === imgId).url
+
+	if (img.complete || img.complete === undefined) {
+		gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+		drawText()
+	}
 }

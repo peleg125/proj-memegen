@@ -4,69 +4,100 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/main.css" />
 		<title>Meme Generator</title>
 	</head>
 	<body onload="onInit()">
 		<header class="main-header">
 			<h2 data-trans="meme-generator">Meme Generator</h2>
-			<nav>
-				<ul>
-					<li class="gallery-li active">
-						<button class="nav-button" data-trans="gallery" onclick="onInit();">
-							Gallery
-						</button>
-					</li>
-					<li class="saved-li">
-						<button
-							class="nav-button"
-							data-trans="saved"
-							onclick="onSavedInit();"
-						>
-							Saved
-						</button>
-					</li>
-					<li>
-						<button
-							class="nav-button"
-							data-trans="randomize"
-							onclick="onRandomClicked();"
-						>
-							Randomize
-						</button>
-					</li>
-				</ul>
-			</nav>
-			<input
-				type="text"
-				placeholder="Text here"
-				oninput="onSetText(this.value)"
-			/>
-			<!-- <button class="nav-hamburger" onclick="onToggleNavOpen()">
-				<i class="fa-solid fa-bars"></i>
-			</button> -->
-			<!-- <select class="language-select" onchange="onSetLang(this.value)">
-				<option value="en">English</option>
-				<option value="he">עברית</option>
-			</select> -->
 		</header>
-		<div class="canvas-container">
-			<canvas width="450" height="450" onclick="onCanvasClick(event)"></canvas>
+		<div class="container">
+			<section class="image-selector">
+				<h3>Select an image</h3>
+				<img src="img/1.jpg" onclick="onSelectImage(1)" class="square" />
+				<img src="img/2.jpg" onclick="onSelectImage(2)" class="square" />
+				<img src="img/3.jpg" onclick="onSelectImage(3)" class="square" />
+				<img src="img/4.jpg" onclick="onSelectImage(4)" class="square" />
+				<img src="img/5.jpg" onclick="onSelectImage(5)" class="square" />
+				<img src="img/6.jpg" onclick="onSelectImage(6)" class="square" />
+				<img src="img/7.jpg" onclick="onSelectImage(7)" class="square" />
+				<img src="img/8.jpg" onclick="onSelectImage(8)" class="square" />
+			</section>
+
+			<div class="lane-container">
+				<div class="canvas-lane">
+					<div class="canvas-container">
+						<canvas
+							width="450"
+							height="450"
+							onclick="onCanvasClick(event)"
+						></canvas>
+					</div>
+				</div>
+				<div class="controls-lane">
+					<div class="text-control">
+						<input
+							type="text"
+							id="textToAdd"
+							placeholder="Text here"
+							oninput="onLineTextInput(this.value)"
+						/>
+						<button onclick="onAddText()">Add Text</button>
+					</div>
+					<div class="buttons">
+						<button
+							style="background-image: url('buttonimages/plusbutton.png')"
+							onclick="onIncreaseFontSize()"
+						>
+							+
+						</button>
+						<button onclick="onDecreaseFontSize()">-</button>
+						<input
+							type="color"
+							id="textColorPicker"
+							onchange="onSetColor(this.value)"
+							value="#f6b73c"
+						/>
+						<button onclick="onTextAlign('left')">right</button>
+						<button onclick="onTextAlign('center')">Center</button>
+						<button onclick="onTextAlign('right')">left</button>
+						<div class="font-dropdown">
+							<label for="fontSelector">Font: </label>
+							<select id="fontSelector" onchange="onChangeFont(this.value)">
+								<option value="Arial">Arial</option>
+								<option value="Verdana">Verdana</option>
+								<option value="Times New Roman">Times New Roman</option>
+								<option value="Courier New">Courier New</option>
+								<option value="Impact">Impact</option>
+							</select>
+						</div>
+						<button onclick="onSaveImage()">Save Image</button>
+						<button onclick="onLoadImage()">Load Image</button>
+						<div class="sticker-buttons">
+							<button class="sticker-button" onclick="onAddSticker('😄')">
+								😄
+							</button>
+							<button class="sticker-button" onclick="onAddSticker('😍')">
+								😍
+							</button>
+							<button class="sticker-button" onclick="onAddSticker('🤩')">
+								🤩
+							</button>
+							<button class="sticker-button" onclick="onAddSticker('😂')">
+								😂
+							</button>
+						</div>
+						<button onclick="onDeleteLine()">Delete Line</button>
+						<button onclick="onToggleBold()">Toggle Bold</button>
+						<button onclick="onDownloadImage()">Download Meme</button>
+					</div>
+				</div>
+			</div>
 		</div>
-		<section class="select-img-container">
-			<h3>Select an image</h3>
-			<img src="img/1.jpg" onclick="onSelectImage(this)" class="square" />
-			<img src="img/2.jpg" onclick="onSelectImage(this)" />
-			<img src="img/3.jpg" onclick="onSelectImage(this)" />
-		</section>
-		<script
-			src="https://kit.fontawesome.com/b3200a873f.js"
-			crossorigin="anonymous"
-		></script>
-		<script src="js/service/util.service.js"></script>
-		<script src="js/service/storage.service.js"></script>
+
+		<script src="js/service/gallery.service.js"></script>
 		<script src="js/service/meme.service.js"></script>
-		<script src="js/service/meme.gallery.service.js"></script>
+		<script src="js/gallery.controller.js"></script>
 		<script src="js/meme.controller.js"></script>
 	</body>
 </html>
