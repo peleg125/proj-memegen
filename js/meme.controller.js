@@ -41,12 +41,6 @@ function addEventListeners() {
 	gElCanvas.addEventListener("mousedown", onMouseDown)
 	gElCanvas.addEventListener("mousemove", onMouseMove)
 	document.addEventListener("mouseup", onMouseUp)
-	window.addEventListener("resize", resizeCanvas)
-}
-function resizeCanvas() {
-	const elContainer = document.querySelector(".lane-container")
-
-	gElCanvas.width = elContainer.clientWidth - 2
 }
 
 function onMouseDown(ev) {

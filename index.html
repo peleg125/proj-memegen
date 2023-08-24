@@ -30,6 +30,7 @@
 			<div class="lane-container">
 				<div class="canvas-lane">
 					<canvas
+					class="responsive-canvas"
 						width="450"
 						height="450"
 						onclick="onCanvasClick(event)"
@@ -62,7 +63,6 @@
 						<button onclick="onTextAlign('left')">right</button>
 						<button onclick="onTextAlign('center')">Center</button>
 						<button onclick="onTextAlign('right')">left</button>
-						<div class="font-dropdown">
 							<label for="fontSelector">Font: </label>
 							<select id="fontSelector" onchange="onChangeFont(this.value)">
 								<option value="Arial">Arial</option>
@@ -71,7 +71,7 @@
 								<option value="Courier New">Courier New</option>
 								<option value="Impact">Impact</option>
 							</select>
-						</div>
+						</class=>
 						<button onclick="onSaveImage()">Save Image</button>
 						<button onclick="onLoadImage()">Load Image</button>
 						<div class="sticker-buttons">

@@ -13,11 +13,13 @@
 	display: grid;
 	width: 100%;
 	grid-auto-flow: column;
+	grid-auto-columns: 50px;
 	text-align: center;
 	margin-bottom: 20px;
 	gap: 10px;
 	justify-content: space-between;
 }
+
 .image-selector img {
 	width: 100px;
 	height: auto;
@@ -25,6 +27,7 @@
 	filter: grayscale(1);
 	transition: 0.5s;
 }
+
 .image-selector img:hover {
 	width: 160px;
 	transition: 0.5s ease-in-out;
@@ -33,12 +36,9 @@
 
 .lane-container {
 	display: grid;
-	grid-template-columns: 1fr auto;
-	justify-content: space-between;
-
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
 	width: 100%;
-	margin-top: 20px;
-	background-color: #f0f4f8;
 	padding: 20px;
 	border-radius: 8px;
 }
@@ -48,11 +48,16 @@
 	border-radius: 8px;
 	padding: 10px;
 	background-color: #ffffff;
-	width: 400px;
+}
+
+.responsive-canvas {
+	max-width: 100%;
 	height: auto;
 }
+
 .controls-lane {
-	justify-self: end;
+	display: flex;
+	flex-direction: column;
 	align-items: center;
 }
 
@@ -70,8 +75,8 @@
 	padding: 20px;
 	border: 2px solid #3b82f6;
 	border-radius: 10px;
-	justify-self: end;
 }
+
 .buttons button {
 	display: flex;
 	align-items: center;
@@ -82,5 +87,21 @@
 	cursor: pointer;
 	background-size: contain;
 }
-.canvas-container {
+
+@media (max-width: 768px) {
+	.lane-container {
+		grid-template-columns: 1fr;
+	}
+	.canvas-lane,
+	.controls-lane {
+		width: 100%;
+	}
+	.buttons {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.buttons button {
+		margin: 5px;
+	}
 }
