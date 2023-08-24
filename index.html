@@ -11,28 +11,29 @@
 		<header class="main-header">
 			<h2 data-trans="meme-generator">Meme Generator</h2>
 		</header>
-		<div class="container">
-			<section class="image-selector">
+		<main class="container">
+			<section>
 				<h3>Select an image</h3>
-				<img src="img/1.jpg" onclick="onSelectImage(1)" class="square" />
-				<img src="img/2.jpg" onclick="onSelectImage(2)" class="square" />
-				<img src="img/3.jpg" onclick="onSelectImage(3)" class="square" />
-				<img src="img/4.jpg" onclick="onSelectImage(4)" class="square" />
-				<img src="img/5.jpg" onclick="onSelectImage(5)" class="square" />
-				<img src="img/6.jpg" onclick="onSelectImage(6)" class="square" />
-				<img src="img/7.jpg" onclick="onSelectImage(7)" class="square" />
-				<img src="img/8.jpg" onclick="onSelectImage(8)" class="square" />
+
+				<section class="image-selector">
+					<img src="img/1.jpg" onclick="onSelectImage(1)" />
+					<img src="img/2.jpg" onclick="onSelectImage(2)" />
+					<img src="img/3.jpg" onclick="onSelectImage(3)" />
+					<img src="img/4.jpg" onclick="onSelectImage(4)" />
+					<img src="img/5.jpg" onclick="onSelectImage(5)" />
+					<img src="img/6.jpg" onclick="onSelectImage(6)" />
+					<img src="img/7.jpg" onclick="onSelectImage(7)" />
+					<img src="img/8.jpg" onclick="onSelectImage(8)" />
+				</section>
 			</section>
 
 			<div class="lane-container">
 				<div class="canvas-lane">
-					<div class="canvas-container">
-						<canvas
-							width="450"
-							height="450"
-							onclick="onCanvasClick(event)"
-						></canvas>
-					</div>
+					<canvas
+						width="450"
+						height="450"
+						onclick="onCanvasClick(event)"
+					></canvas>
 				</div>
 				<div class="controls-lane">
 					<div class="text-control">
@@ -42,7 +43,7 @@
 							placeholder="Text here"
 							oninput="onLineTextInput(this.value)"
 						/>
-						<button onclick="onAddText()">Add Text</button>
+						<button onclick="onAddText(this)">Add Text</button>
 					</div>
 					<div class="buttons">
 						<button
@@ -93,7 +94,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</main>
 
 		<script src="js/service/gallery.service.js"></script>
 		<script src="js/service/meme.service.js"></script>

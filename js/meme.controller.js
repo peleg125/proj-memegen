@@ -41,6 +41,12 @@ function addEventListeners() {
 	gElCanvas.addEventListener("mousedown", onMouseDown)
 	gElCanvas.addEventListener("mousemove", onMouseMove)
 	document.addEventListener("mouseup", onMouseUp)
+	window.addEventListener("resize", resizeCanvas)
+}
+function resizeCanvas() {
+	const elContainer = document.querySelector(".lane-container")
+
+	gElCanvas.width = elContainer.clientWidth - 2
 }
 
 function onMouseDown(ev) {
@@ -61,7 +67,6 @@ function onMouseMove(ev) {
 	const meme = getMeme()
 	if (isDragging) {
 		const { offsetX, offsetY } = ev
-		console.log("Mouse move event triggered.")
 		const dx = offsetX - dragStartX
 		const dy = offsetY - dragStartY
 
@@ -85,4 +90,12 @@ function onAddSticker(emoji) {
 
 function onSelectImage(id) {
 	selectImage(id)
+}
+
+function onAddText(elText) {
+	addText(elText)
+}
+
+function onCanvasClick(ev) {
+	canvasClick(ev)
 }

@@ -3,42 +3,56 @@
 }
 
 .container {
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	grid-template-rows: auto 1fr;
 	align-items: center;
 	padding: 20px;
 }
 
 .image-selector {
+	display: grid;
+	width: 100%;
+	grid-auto-flow: column;
 	text-align: center;
 	margin-bottom: 20px;
+	gap: 10px;
+	justify-content: space-between;
+}
+.image-selector img {
+	width: 100px;
+	height: auto;
+	cursor: pointer;
+	filter: grayscale(1);
+	transition: 0.5s;
+}
+.image-selector img:hover {
+	width: 160px;
+	transition: 0.5s ease-in-out;
+	filter: unset;
 }
 
 .lane-container {
-	display: flex;
+	display: grid;
+	grid-template-columns: 1fr auto;
 	justify-content: space-between;
+
 	width: 100%;
 	margin-top: 20px;
-	background-color: #f0f4f8; /* Blueish background color */
+	background-color: #f0f4f8;
 	padding: 20px;
 	border-radius: 8px;
 }
 
 .canvas-lane {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 	border: 1px solid #ccc;
 	border-radius: 8px;
 	padding: 10px;
-	background-color: #ffffff; /* White background color */
+	background-color: #ffffff;
+	width: 400px;
+	height: auto;
 }
-
 .controls-lane {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
+	justify-self: end;
 	align-items: center;
 }
 
@@ -52,10 +66,11 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background-color: #f0f4f8; /* Background color for the button container */
+	background-color: #f0f4f8;
 	padding: 20px;
-	border: 2px solid #3b82f6; /* Border for the button container */
+	border: 2px solid #3b82f6;
 	border-radius: 10px;
+	justify-self: end;
 }
 .buttons button {
 	display: flex;
@@ -67,13 +82,5 @@
 	cursor: pointer;
 	background-size: contain;
 }
-#canvas-container {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background-color: #f0f4f8; /* Background color for the canvas container */
-	padding: 20px;
-	border: 2px solid #3b82f6; /* Border for the canvas container */
-	border-radius: 10px;
-	margin-top: 20px;
+.canvas-container {
 }

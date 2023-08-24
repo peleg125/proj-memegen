@@ -73,7 +73,7 @@ function onDeleteLine() {
 }
 
 function onDownloadImage() {
-	const canvasData = canvas.toDataURL("image/png")
+	const canvasData = gElCanvas.toDataURL("image/png")
 
 	const downloadLink = document.createElement("a")
 	downloadLink.href = canvasData
@@ -214,7 +214,6 @@ function addSticker(emoji) {
 
 function selectImage(id) {
 	gMeme.selectedImgId = gImgs.find((img) => img.id === id).id
-	console.log(gMeme.selectedImgId)
 	renderCanvas()
 }
 
@@ -231,5 +230,45 @@ function renderSelectedImage(imgId) {
 	if (img.complete || img.complete === undefined) {
 		gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 		drawText()
+	}
+}
+
+function addText(text) {
+	const textInput = document.getElementById("textToAdd")
+	const colorInput = document.getElementById("textColorPicker")
+
+	if (!textInput.value) return
+
+	const newLine = {
+		txt: textInput.value,
+		size: 40,
+		color: colorInput.value,
+		strokeColor: "#000000",
+		strokeWidth: 5,
+		font: "Impact",
+		x: gElCanvas.width / 2,
+		y: 50 + gMeme.lines.length * 30,
+	}
+
+	gMeme.lines.push(newLine)
+	renderCanvas()
+
+	textInput.value = ""
+}
+function canvasClick(ev) {
+	const { offsetX, offsetY } = ev
+	const clickedLineIdx = getClickedLineIdx(offsetX, offsetY)
+	const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+	const textInput = document.getElementById("textToAdd")
+	const colorInput = document.getElementById("textColorPicker")
+	if (clickedLineIdx !== -1) {
+		gMeme.selectedLineIdx = clickedLineIdx
+		textInput.value = selectedLine.txt
+		colorInput.value = selectedLine.color
+		renderCanvas()
+	} else {
+		textInput.value = ""
+		gMeme.selectedLineIdx = null
+		renderCanvas()
 	}
 }
