@@ -86,14 +86,17 @@ function onDownloadImage() {
 
 function drawText() {
 	gMeme.lines.forEach((line, idx) => {
-		gCtx.font = `${line.size}px ${line.bold ? "bold " : ""}Arial`
+		const fontStyle = line.bold ? "bold " : ""
+		const fontFamily = line.font || "Arial"
+
+		gCtx.font = `${fontStyle}${line.size}px ${fontFamily}`
 		gCtx.fillStyle = line.color
 		gCtx.textAlign = line.align
 
 		gCtx.fillText(line.txt, line.x, line.y)
 
 		if (gMeme.selectedLineIdx === idx) {
-			gCtx.lineWidth = 2 //
+			gCtx.lineWidth = 2
 			gCtx.strokeStyle = "red"
 			gCtx.strokeRect(
 				line.x - 5,
