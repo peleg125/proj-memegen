@@ -45,14 +45,17 @@ function addEventListeners() {
 }
 
 function onMouseDown(ev) {
+	ev.preventDefault()
 	handleDown(ev)
 }
 
 function onMouseMove(ev) {
+	ev.preventDefault()
 	handleMove(ev)
 }
 
 function onMouseUp(ev) {
+	ev.preventDefault()
 	handleUp(ev)
 }
 

@@ -316,7 +316,7 @@ function resizeCanvasContainer() {
 }
 
 function handleMove(ev) {
-	ev.preventDefault()
+
 	let offsetX, offsetY
 	if (ev.type === "touchmove") {
 		const rect = ev.target.getBoundingClientRect()
