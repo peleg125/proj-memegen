@@ -1,9 +1,22 @@
-.canvas-lane {
+/* .canvas-lane {
 	border: 1px solid #ccc;
 	border-radius: 8px;
 	padding: 10px;
 	background-color: var(--canvas-lane-bg-color);
 	place-self: center;
+} */
+.canvas-lane {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	max-width: 100%;
+	height: auto;
+
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	padding: 10px;
+	background-color: var(--canvas-lane-bg-color);
 }
 
 .responsive-canvas {

@@ -22,3 +22,6 @@
 .sticker-buttons {
 	display: flex;
 }
+.addTextBtn {
+	width: max-content;
+}

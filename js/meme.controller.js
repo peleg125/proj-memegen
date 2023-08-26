@@ -41,6 +41,7 @@ function addEventListeners() {
 	gElCanvas.addEventListener("mousedown", onMouseDown)
 	gElCanvas.addEventListener("mousemove", onMouseMove)
 	document.addEventListener("mouseup", onMouseUp)
+	window.addEventListener("resize", handleResizeCanvasContainer)
 }
 
 function onMouseDown(ev) {
@@ -96,4 +97,7 @@ function onCanvasClick(ev) {
 
 function onToggleBold() {
 	toggleBold()
+}
+function handleResizeCanvasContainer() {
+	resizeCanvasContainer()
 }

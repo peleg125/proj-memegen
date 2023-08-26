@@ -219,17 +219,35 @@ function selectImage(id) {
 
 function renderSelectedImage(imgId) {
 	const img = new Image()
-
 	img.onload = function () {
-		gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-		drawText()
+		// Calculate aspect ratios
+		const imgAspectRatio = img.width / img.height
+		const canvasAspectRatio = gElCanvas.width / gElCanvas.height
+
+		let drawWidth, drawHeight
+
+		// If image's aspect ratio is less than canvas's aspect ratio
+		if (imgAspectRatio < canvasAspectRatio) {
+			drawWidth = gElCanvas.width
+			drawHeight = gElCanvas.width / imgAspectRatio
+		} else {
+			drawHeight = gElCanvas.height
+			drawWidth = gElCanvas.height * imgAspectRatio
+		}
+
+		// Calculate position to start drawing the image
+		const x = (gElCanvas.width - drawWidth) / 2
+		const y = (gElCanvas.height - drawHeight) / 2
+
+		// Draw the image
+		gCtx.drawImage(img, x, y, drawWidth, drawHeight)
+		drawText() // Assuming this function draws text on the canvas
 	}
 
 	img.src = gImgs.find((img) => img.id === imgId).url
 
 	if (img.complete || img.complete === undefined) {
-		gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-		drawText()
+		img.onload()
 	}
 }
 
@@ -278,4 +296,21 @@ function toggleBold() {
 		selectedLine.bold = !selectedLine.bold
 		renderCanvas()
 	}
+}
+
+function resizeCanvasContainer() {
+	const canvasContainer = document.querySelector(".canvas-lane")
+	const canvasWidth = gElCanvas.width
+	const canvasHeight = gElCanvas.height
+	const aspectRatio = canvasWidth / canvasHeight
+	const containerWidth = canvasContainer.offsetWidth
+	const newHeight = containerWidth / aspectRatio
+
+	gElCanvas.width = containerWidth
+	gElCanvas.height = newHeight
+
+	renderCanvas()
+	renderSelectedImage()
+	canvasContainer.style.width = `${containerWidth}px`
+	canvasContainer.style.height = `${newHeight}px`
 }
