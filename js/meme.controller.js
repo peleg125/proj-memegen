@@ -45,15 +45,15 @@ function addEventListeners() {
 }
 
 function onMouseDown(ev) {
-	mouseDown(ev)
+	handleDown(ev)
 }
 
 function onMouseMove(ev) {
-	mouseMove(ev)
+	handleMove(ev)
 }
 
-function onMouseUp() {
-	mouseUp()
+function onMouseUp(ev) {
+	handleUp(ev)
 }
 
 function onAddSticker(emoji) {

@@ -315,9 +315,19 @@ function resizeCanvasContainer() {
 	canvasContainer.style.height = `${newHeight}px`
 }
 
-function mouseMove(ev) {
+function handleMove(ev) {
+	ev.preventDefault()
+	let offsetX, offsetY
+	if (ev.type === "touchmove") {
+		const rect = ev.target.getBoundingClientRect()
+		offsetX = ev.touches[0].clientX - rect.left
+		offsetY = ev.touches[0].clientY - rect.top
+	} else {
+		offsetX = ev.offsetX
+		offsetY = ev.offsetY
+	}
+
 	if (isDragging) {
-		const { offsetX, offsetY } = ev
 		const dx = offsetX - dragStartX
 		const dy = offsetY - dragStartY
 
@@ -331,18 +341,29 @@ function mouseMove(ev) {
 	}
 }
 
-function mouseUp() {
+function handleUp(ev) {
+	ev.preventDefault()
 	isDragging = false
 }
 
-function mouseDown(ev) {
-	const { offsetX, offsetY } = ev
+function handleDown(ev) {
+	ev.preventDefault()
+	let offsetX, offsetY
+	if (ev.type === "touchstart") {
+		const rect = ev.target.getBoundingClientRect()
+		offsetX = ev.touches[0].clientX - rect.left
+		offsetY = ev.touches[0].clientY - rect.top
+	} else {
+		offsetX = ev.offsetX
+		offsetY = ev.offsetY
+	}
+
 	const clickedLineIdx = getClickedLineIdx(offsetX, offsetY)
 
 	if (clickedLineIdx !== -1) {
 		isDragging = true
 		dragStartX = offsetX
 		dragStartY = offsetY
-		meme.selectedLineIdx = clickedLineIdx
+		gMeme.selectedLineIdx = clickedLineIdx
 	}
 }
