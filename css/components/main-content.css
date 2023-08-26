@@ -1,10 +1,3 @@
-/* .canvas-lane {
-	border: 1px solid #ccc;
-	border-radius: 8px;
-	padding: 10px;
-	background-color: var(--canvas-lane-bg-color);
-	place-self: center;
-} */
 .canvas-lane {
 	display: flex;
 	justify-content: center;

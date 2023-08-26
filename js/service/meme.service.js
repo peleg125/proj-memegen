@@ -388,7 +388,8 @@ function doUploadImg(imgDataUrl, onSuccess) {
 	XHR.open("POST", "//ca-upload.com/here/upload.php")
 	XHR.send(formData)
 }
-function saveImage(memeName) {
+function saveImage() {
+	const userInput = prompt("Please enter meme name")
 	if (gMeme.selectedImgId) {
 		const img = new Image()
 
@@ -409,13 +410,13 @@ function saveImage(memeName) {
 
 			const imageDataURL = gElCanvas.toDataURL("image/png")
 
-			if (memeName) {
+			if (userInput) {
 				let savedImages = loadFromStorage("savedMemes")
 				if (!savedImages) {
 					savedImages = []
 				}
 				savedImages.push({
-					name: memeName,
+					name: userInput,
 					dataURL: imageDataURL,
 					textLines: textLines,
 				})
@@ -427,23 +428,20 @@ function saveImage(memeName) {
 	}
 }
 function loadImage() {
-	const loadName = prompt("Enter the name of the saved image:")
-	if (loadName) {
+	const userInput = prompt("Please enter meme name")
+	if (userInput) {
 		const savedImages = loadFromStorage("savedMemes")
 		if (savedImages) {
-			const savedImage = savedImages.find((image) => image.name === loadName)
+			const savedImage = savedImages.find((image) => image.name === userInput)
 			if (savedImage) {
-				const img = new Image()
-				img.onload = function () {
-					gElCanvas.width = img.width
-					gElCanvas.height = img.height
-					gCtx.drawImage(img, 0, 0)
-
-					gMeme.lines = savedImage.textLines
-
-					renderCanvas()
-				}
-				img.src = savedImage.dataURL
+				gImgs.push({
+					id: gImgs.length + 1,
+					url: savedImage.dataURL,
+					keywords: [],
+				})
+				gMeme.lines = savedImage.textLines
+				gMeme.selectedImgId = gImgs.length
+				renderCanvas()
 			} else {
 				alert("Image not found.")
 			}

@@ -1,5 +1,4 @@
-/* Small screens */
-@media (max-width: 767px) {
+@media (max-width: 600px) {
 	.lane-container {
 		grid-template-columns: 1fr;
 	}
@@ -24,8 +23,7 @@
 	}
 }
 
-/* Medium screens */
-@media (min-width: 768px) and (max-width: 979px) {
+@media (max-width: 920px) {
 	.lane-container {
 		grid-template-columns: 1fr;
 	}
@@ -47,7 +45,6 @@
 	}
 }
 
-/* Large screens */
 @media (min-width: 980px) {
 	.lane-container {
 		grid-template-columns: 5fr 2fr;

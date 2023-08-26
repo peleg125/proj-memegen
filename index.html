@@ -13,14 +13,14 @@
 		<title>Meme Generator</title>
 	</head>
 	<body onload="onInit()">
-		<header class="main-header">
+		<header class="main-header text-center">
 			<h1 data-trans="meme-generator">Meme Generator</h1>
 		</header>
 
-		<main class="container">
+		<main class="container grid text-center">
 			<section>
 				<h2>Select an image</h2>
-				<div class="image-selector">
+				<div class="image-selector grid grid-auto-flow-column">
 					<img src="img/1.jpg" onclick="onSelectImage(1)" />
 					<img src="img/2.jpg" onclick="onSelectImage(2)" />
 					<img src="img/3.jpg" onclick="onSelectImage(3)" />
@@ -32,8 +32,8 @@
 				</div>
 			</section>
 
-			<section class="lane-container">
-				<article class="canvas-lane">
+			<section class="lane-container grid">
+				<article class="canvas-lane self-center">
 					<canvas
 						class="responsive-canvas"
 						width="450"
@@ -42,8 +42,8 @@
 					></canvas>
 				</article>
 
-				<aside class="controls-lane">
-					<form class="text-control">
+				<aside class="controls-lane flex flex-column flex-start">
+					<form class="text-control flex">
 						<input
 							type="text"
 							id="textToAdd"
@@ -66,12 +66,9 @@
 							onchange="onSetColor(this.value)"
 							value="#f6b73c"
 						/>
-						<section class="flex">
-							<button onclick="onTextAlign('left')">left</button>
-							<button onclick="onTextAlign('center')">Center</button>
-							<button onclick="onTextAlign('right')">right</button>
-						</section>
-
+						<button onclick="onTextAlign('left')">left</button>
+						<button onclick="onTextAlign('center')">Center</button>
+						<button onclick="onTextAlign('right')">right</button>
 						<label for="fontSelector">Font: </label>
 						<select id="fontSelector" onchange="onChangeFont(this.value)">
 							<option value="Arial">Arial</option>
@@ -80,10 +77,8 @@
 							<option value="Courier New">Courier New</option>
 							<option value="Impact">Impact</option>
 						</select>
-						<section class="flex">
-							<button onclick="onSaveImage()">Save Image</button>
-							<button onclick="onLoadImage()">Load Image</button>
-						</section>
+						<button onclick="onSaveImage()">Save Image</button>
+						<button onclick="onLoadImage()">Load Image</button>
 						<div class="sticker-buttons flex">
 							<button class="sticker-button" onclick="onAddSticker('😄')">
 								😄
@@ -98,11 +93,9 @@
 								😂
 							</button>
 						</div>
-						<section class="flex">
-							<button onclick="onDeleteLine()">Delete Line</button>
-							<button onclick="onToggleBold()">Toggle Bold</button>
-							<button onclick="onDownloadImage()">Download Meme</button>
-						</section>
+						<button onclick="onDeleteLine()">Delete Line</button>
+						<button onclick="onToggleBold()">Toggle Bold</button>
+						<button onclick="onDownloadImage()">Download Meme</button>
 						<i onclick="onUploadImg()" class="fa-brands fa-facebook"></i>
 					</div>
 				</aside>
