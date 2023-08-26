@@ -1,113 +1,16 @@
-* {
-	box-sizing: border-box;
-}
+/* BASICS   */
+@import url("basics/base.css");
+@import url("basics/layout.css");
+@import url("basics/helpers.css");
 
-.container {
-	display: grid;
-	grid-template-rows: auto 1fr;
-	align-items: center;
-	padding: 20px;
-	place-items: center;
-	background-color: lightslategray;
-	text-align: center;
-}
-.main-header {
-	text-align: center;
-}
-.image-selector {
-	display: grid;
-	width: 100%;
-	grid-auto-flow: column;
-	text-align: center;
-	margin-bottom: 20px;
-	gap: 10px;
-	justify-content: space-between;
-}
+/* CONPONENTS */
 
-.image-selector img {
-	width: 100px;
-	height: auto;
-	cursor: pointer;
-	filter: grayscale(1);
-	transition: 0.5s;
-}
+@import url("components/buttons.css");
+@import url("components/img.css");
+@import url("components/main-content.css");
+@import url("components/main-header.css");
 
-.image-selector img:hover {
-	width: 160px;
-	transition: 0.5s ease-in-out;
-	filter: unset;
-}
-
-.lane-container {
-	display: grid;
-	grid-template-columns: 4fr 1fr;
-	gap: 20px;
-	width: 100%;
-	padding: 20px;
-	border-radius: 8px;
-	background-color: #d3d3d34f;
-}
-
-.canvas-lane {
-	border: 1px solid #ccc;
-	border-radius: 8px;
-	padding: 10px;
-	background-color: #ffffff;
-	place-self: center;
-}
-
-.responsive-canvas {
-	max-width: 100%;
-	height: auto;
-}
-
-.controls-lane {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-}
-
-.text-control {
-	display: flex;
-	align-items: center;
-	margin-bottom: 10px;
-}
-
-.buttons {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	background-color: #f0f4f8;
-	padding: 20px;
-	border: 2px solid #3b82f6;
-	border-radius: 10px;
-}
-
-.buttons button {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 10px;
-	margin: 5px;
-	border: none;
-	cursor: pointer;
-	background-size: contain;
-}
-
-@media (max-width: 768px) {
-	.lane-container {
-		grid-template-columns: 1fr;
-	}
-	.canvas-lane,
-	.controls-lane {
-		width: 100%;
-	}
-	.buttons {
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: center;
-	}
-	.buttons button {
-		margin: 5px;
-	}
-}
+/* SETUP */
+@import url("setup/typograpghy.css");
+@import url("setup/vars.css");
+@import url("setup/mq.css");

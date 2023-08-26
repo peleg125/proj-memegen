@@ -272,3 +272,10 @@ function canvasClick(ev) {
 		renderCanvas()
 	}
 }
+function toggleBold() {
+	if (gMeme.selectedLineIdx !== null && gMeme.lines[gMeme.selectedLineIdx]) {
+		const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+		selectedLine.bold = !selectedLine.bold
+		renderCanvas()
+	}
+}

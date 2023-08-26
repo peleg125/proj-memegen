@@ -93,3 +93,7 @@ function onAddText(elText) {
 function onCanvasClick(ev) {
 	canvasClick(ev)
 }
+
+function onToggleBold() {
+	toggleBold()
+}

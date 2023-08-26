@@ -1,0 +1,24 @@
+.canvas-lane {
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	padding: 10px;
+	background-color: var(--canvas-lane-bg-color);
+	place-self: center;
+}
+
+.responsive-canvas {
+	max-width: 100%;
+	height: auto;
+}
+
+.controls-lane {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.text-control {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}

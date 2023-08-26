@@ -1,0 +1,19 @@
+.container {
+	display: grid;
+	grid-template-rows: auto 1fr;
+	align-items: center;
+	padding: 20px;
+	place-items: center;
+	background-color: var(--container-bg-color);
+	text-align: center;
+}
+
+.lane-container {
+	display: grid;
+	grid-template-columns: 4fr 1fr;
+	gap: 20px;
+	width: 100%;
+	padding: 20px;
+	border-radius: 8px;
+	background-color: var(--lane-container-bg-color);
+}
