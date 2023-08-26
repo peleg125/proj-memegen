@@ -240,7 +240,6 @@ function renderSelectedImage(imgId) {
 		gCtx.drawImage(img, x, y, drawWidth, drawHeight)
 		drawText()
 	}
-	console.log(imgId)
 	img.src = gImgs.find((img) => img.id === imgId).url
 
 	if (img.complete || img.complete === undefined) {
