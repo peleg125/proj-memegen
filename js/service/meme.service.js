@@ -120,6 +120,7 @@ function renderCanvas() {
 		renderSelectedImage(gMeme.selectedImgId)
 	}
 }
+
 function setColor(color) {
 	if (gMeme.selectedLineIdx !== null && gMeme.lines[gMeme.selectedLineIdx]) {
 		gMeme.lines[gMeme.selectedLineIdx].color = color
@@ -220,13 +221,11 @@ function selectImage(id) {
 function renderSelectedImage(imgId) {
 	const img = new Image()
 	img.onload = function () {
-		// Calculate aspect ratios
 		const imgAspectRatio = img.width / img.height
 		const canvasAspectRatio = gElCanvas.width / gElCanvas.height
 
 		let drawWidth, drawHeight
 
-		// If image's aspect ratio is less than canvas's aspect ratio
 		if (imgAspectRatio < canvasAspectRatio) {
 			drawWidth = gElCanvas.width
 			drawHeight = gElCanvas.width / imgAspectRatio
@@ -235,15 +234,13 @@ function renderSelectedImage(imgId) {
 			drawWidth = gElCanvas.height * imgAspectRatio
 		}
 
-		// Calculate position to start drawing the image
 		const x = (gElCanvas.width - drawWidth) / 2
 		const y = (gElCanvas.height - drawHeight) / 2
 
-		// Draw the image
 		gCtx.drawImage(img, x, y, drawWidth, drawHeight)
-		drawText() // Assuming this function draws text on the canvas
+		drawText()
 	}
-
+	console.log(imgId)
 	img.src = gImgs.find((img) => img.id === imgId).url
 
 	if (img.complete || img.complete === undefined) {
@@ -310,7 +307,7 @@ function resizeCanvasContainer() {
 	gElCanvas.height = newHeight
 
 	renderCanvas()
-	renderSelectedImage()
+	// renderSelectedImage()
 	canvasContainer.style.width = `${containerWidth}px`
 	canvasContainer.style.height = `${newHeight}px`
 }
@@ -342,6 +339,7 @@ function handleMove(ev) {
 }
 
 function handleUp(ev) {
+	ev.preventDefault()
 	isDragging = false
 }
 

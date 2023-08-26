@@ -38,25 +38,25 @@ function onEditLine(lineIdx) {
 }
 
 function addEventListeners() {
-	gElCanvas.addEventListener("mousedown", onMouseDown)
-	gElCanvas.addEventListener("mousemove", onMouseMove)
-	document.addEventListener("mouseup", onMouseUp)
-	gElCanvas.addEventListener("touchstart", handleDown)
-	gElCanvas.addEventListener("touchmove", handleMove)
-	gElCanvas.addEventListener("touchend", handleUp)
+	gElCanvas.addEventListener("mousedown", onHandleDown)
+	gElCanvas.addEventListener("mousemove", onHandleMove)
+	document.addEventListener("mouseup", onHandleUp)
+	gElCanvas.addEventListener("touchstart", onHandleDown)
+	gElCanvas.addEventListener("touchmove", onHandleMove)
+	gElCanvas.addEventListener("touchend", onHandleUp)
 	window.addEventListener("resize", handleResizeCanvasContainer)
 }
 
-function onMouseDown(ev) {
+function onHandleDown(ev) {
 	handleDown(ev)
 }
 
-function onMouseMove(ev) {
+function onHandleMove(ev) {
 	ev.preventDefault()
 	handleMove(ev)
 }
 
-function onMouseUp(ev) {
+function onHandleUp(ev) {
 	handleUp(ev)
 }
 
