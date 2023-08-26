@@ -388,7 +388,7 @@ function doUploadImg(imgDataUrl, onSuccess) {
 	XHR.open("POST", "//ca-upload.com/here/upload.php")
 	XHR.send(formData)
 }
-function saveImage() {
+function saveImage(memeName) {
 	if (gMeme.selectedImgId) {
 		const img = new Image()
 
@@ -408,18 +408,18 @@ function saveImage() {
 			}))
 
 			const imageDataURL = gElCanvas.toDataURL("image/png")
-			const imageName = prompt("Enter a name for the image:")
 
-			if (imageName) {
-				const savedImages =
-					JSON.parse(localStorage.getItem("savedImages")) || []
+			if (memeName) {
+				let savedImages = loadFromStorage("savedMemes")
+				if (!savedImages) {
+					savedImages = []
+				}
 				savedImages.push({
-					name: imageName,
+					name: memeName,
 					dataURL: imageDataURL,
 					textLines: textLines,
 				})
-				localStorage.setItem("savedImages", JSON.stringify(savedImages))
-				alert("Image saved!")
+				saveToStorage("savedMemes", savedImages)
 			}
 		}
 
@@ -429,9 +429,8 @@ function saveImage() {
 function loadImage() {
 	const loadName = prompt("Enter the name of the saved image:")
 	if (loadName) {
-		const savedImagesJSON = localStorage.getItem("savedImages")
-		if (savedImagesJSON) {
-			const savedImages = JSON.parse(savedImagesJSON)
+		const savedImages = loadFromStorage("savedMemes")
+		if (savedImages) {
 			const savedImage = savedImages.find((image) => image.name === loadName)
 			if (savedImage) {
 				const img = new Image()
