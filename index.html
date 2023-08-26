@@ -4,19 +4,23 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" X-Content-Type-Options: nosniff
-		href="css/main.css" />
+		<link
+			rel="stylesheet"
+			X-Content-Type-Options:
+			nosniff
+			href="css/main.css"
+		/>
 		<title>Meme Generator</title>
 	</head>
 	<body onload="onInit()">
 		<header class="main-header">
-			<h2 data-trans="meme-generator">Meme Generator</h2>
+			<h1 data-trans="meme-generator">Meme Generator</h1>
 		</header>
+
 		<main class="container">
 			<section>
-				<h3>Select an image</h3>
-
-				<section class="image-selector">
+				<h2>Select an image</h2>
+				<div class="image-selector">
 					<img src="img/1.jpg" onclick="onSelectImage(1)" />
 					<img src="img/2.jpg" onclick="onSelectImage(2)" />
 					<img src="img/3.jpg" onclick="onSelectImage(3)" />
@@ -25,35 +29,32 @@
 					<img src="img/6.jpg" onclick="onSelectImage(6)" />
 					<img src="img/7.jpg" onclick="onSelectImage(7)" />
 					<img src="img/8.jpg" onclick="onSelectImage(8)" />
-				</section>
+				</div>
 			</section>
 
-			<div class="lane-container">
-				<div class="canvas-lane">
+			<section class="lane-container">
+				<article class="canvas-lane">
 					<canvas
-					class="responsive-canvas"
+						class="responsive-canvas"
 						width="450"
 						height="450"
 						onclick="onCanvasClick(event)"
 					></canvas>
-				</div>
-				<div class="controls-lane">
-					<div class="text-control">
+				</article>
+
+				<aside class="controls-lane">
+					<form class="text-control">
 						<input
 							type="text"
 							id="textToAdd"
 							placeholder="Text here"
 							oninput="onLineTextInput(this.value)"
 						/>
-						<button onclick="onAddText(this)">Add Text</button>
-					</div>
+						<button type="button" onclick="onAddText(this)">Add Text</button>
+					</form>
+
 					<div class="buttons">
-						<button
-							style="background-image: url('buttonimages/plusbutton.png')"
-							onclick="onIncreaseFontSize()"
-						>
-							+
-						</button>
+						<button onclick="onIncreaseFontSize()">+</button>
 						<button onclick="onDecreaseFontSize()">-</button>
 						<input
 							type="color"
@@ -64,15 +65,14 @@
 						<button onclick="onTextAlign('left')">left</button>
 						<button onclick="onTextAlign('center')">Center</button>
 						<button onclick="onTextAlign('right')">right</button>
-							<label for="fontSelector">Font: </label>
-							<select id="fontSelector" onchange="onChangeFont(this.value)">
-								<option value="Arial">Arial</option>
-								<option value="Verdana">Verdana</option>
-								<option value="Times New Roman">Times New Roman</option>
-								<option value="Courier New">Courier New</option>
-								<option value="Impact">Impact</option>
-							</select>
-						</class=>
+						<label for="fontSelector">Font: </label>
+						<select id="fontSelector" onchange="onChangeFont(this.value)">
+							<option value="Arial">Arial</option>
+							<option value="Verdana">Verdana</option>
+							<option value="Times New Roman">Times New Roman</option>
+							<option value="Courier New">Courier New</option>
+							<option value="Impact">Impact</option>
+						</select>
 						<button onclick="onSaveImage()">Save Image</button>
 						<button onclick="onLoadImage()">Load Image</button>
 						<div class="sticker-buttons">
@@ -93,8 +93,8 @@
 						<button onclick="onToggleBold()">Toggle Bold</button>
 						<button onclick="onDownloadImage()">Download Meme</button>
 					</div>
-				</div>
-			</div>
+				</aside>
+			</section>
 		</main>
 
 		<script src="js/service/gallery.service.js"></script>
