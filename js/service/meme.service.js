@@ -314,3 +314,35 @@ function resizeCanvasContainer() {
 	canvasContainer.style.width = `${containerWidth}px`
 	canvasContainer.style.height = `${newHeight}px`
 }
+
+function mouseMove(ev) {
+	if (isDragging) {
+		const { offsetX, offsetY } = ev
+		const dx = offsetX - dragStartX
+		const dy = offsetY - dragStartY
+
+		gMeme.lines[gMeme.selectedLineIdx].x += dx
+		gMeme.lines[gMeme.selectedLineIdx].y += dy
+
+		dragStartX = offsetX
+		dragStartY = offsetY
+
+		renderCanvas()
+	}
+}
+
+function mouseUp() {
+	isDragging = false
+}
+
+function mouseDown(ev) {
+	const { offsetX, offsetY } = ev
+	const clickedLineIdx = getClickedLineIdx(offsetX, offsetY)
+
+	if (clickedLineIdx !== -1) {
+		isDragging = true
+		dragStartX = offsetX
+		dragStartY = offsetY
+		meme.selectedLineIdx = clickedLineIdx
+	}
+}

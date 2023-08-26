@@ -45,38 +45,15 @@ function addEventListeners() {
 }
 
 function onMouseDown(ev) {
-	const meme = getMeme()
-	const { offsetX, offsetY } = ev
-	console.log("Mouse down event triggered.")
-	const clickedLineIdx = getClickedLineIdx(offsetX, offsetY)
-
-	if (clickedLineIdx !== -1) {
-		isDragging = true
-		dragStartX = offsetX
-		dragStartY = offsetY
-		meme.selectedLineIdx = clickedLineIdx
-	}
+	mouseDown(ev)
 }
 
 function onMouseMove(ev) {
-	const meme = getMeme()
-	if (isDragging) {
-		const { offsetX, offsetY } = ev
-		const dx = offsetX - dragStartX
-		const dy = offsetY - dragStartY
-
-		meme.lines[meme.selectedLineIdx].x += dx
-		meme.lines[meme.selectedLineIdx].y += dy
-
-		dragStartX = offsetX
-		dragStartY = offsetY
-
-		renderCanvas()
-	}
+	mouseMove(ev)
 }
 
 function onMouseUp() {
-	isDragging = false
+	mouseUp()
 }
 
 function onAddSticker(emoji) {
