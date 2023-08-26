@@ -1,3 +1,4 @@
+i,
 .buttons {
 	display: flex;
 	flex-direction: column;
@@ -7,7 +8,7 @@
 	border: 2px solid #3b82f6;
 	border-radius: 10px;
 }
-
+i,
 .buttons button {
 	display: flex;
 	align-items: center;
@@ -18,10 +19,21 @@
 	cursor: pointer;
 	background-size: contain;
 }
-
+i,
 .sticker-buttons {
 	display: flex;
 }
 .addTextBtn {
 	width: max-content;
+}
+.fa-facebook {
+	margin-block-start: 10px;
+}
+.fa-facebook:hover {
+	color: blue;
+	transition: 0.3s;
+}
+.fa-minus:hover {
+	animation: fade 0.6s 1;
+	scale: 1.2;
 }

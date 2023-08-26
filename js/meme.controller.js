@@ -41,11 +41,13 @@ function addEventListeners() {
 	gElCanvas.addEventListener("mousedown", onMouseDown)
 	gElCanvas.addEventListener("mousemove", onMouseMove)
 	document.addEventListener("mouseup", onMouseUp)
+	gElCanvas.addEventListener("touchstart", handleDown)
+	gElCanvas.addEventListener("touchmove", handleMove)
+	gElCanvas.addEventListener("touchend", handleUp)
 	window.addEventListener("resize", handleResizeCanvasContainer)
 }
 
 function onMouseDown(ev) {
-	ev.preventDefault()
 	handleDown(ev)
 }
 
@@ -55,7 +57,6 @@ function onMouseMove(ev) {
 }
 
 function onMouseUp(ev) {
-	ev.preventDefault()
 	handleUp(ev)
 }
 
@@ -80,4 +81,14 @@ function onToggleBold() {
 }
 function handleResizeCanvasContainer() {
 	resizeCanvasContainer()
+}
+function onUploadImg() {
+	const imgDataUrl = gElCanvas.toDataURL("image/jpeg")
+
+	function onSuccess(uploadedImgUrl) {
+		const url = encodeURIComponent(uploadedImgUrl)
+		window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&t=${url}`)
+	}
+
+	doUploadImg(imgDataUrl, onSuccess)
 }

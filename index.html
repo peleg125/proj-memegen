@@ -50,17 +50,16 @@
 							placeholder="Text here"
 							oninput="onLineTextInput(this.value)"
 						/>
-						<button type="button" class="addTextBtn" onclick="onAddText(this)">Add Text</button>
+						<button type="button" class="addTextBtn" onclick="onAddText(this)">
+							Add Text
+						</button>
 					</form>
 
 					<div class="buttons flex flex-column">
-						<button
-							
-							onclick="onIncreaseFontSize()"
-						>
-							+
-						</button>
-						<button onclick="onDecreaseFontSize()">-</button>
+						<i onclick="onIncreaseFontSize()" class="fa-regular fa-plus"></i>
+						<i onclick="onDecreaseFontSize()" class="fa-solid fa-minus"></i>
+						<!-- <button onclick="onIncreaseFontSize()">+</button>
+						<button onclick="onDecreaseFontSize()">-</button> -->
 						<input
 							type="color"
 							id="textColorPicker"
@@ -97,11 +96,15 @@
 						<button onclick="onDeleteLine()">Delete Line</button>
 						<button onclick="onToggleBold()">Toggle Bold</button>
 						<button onclick="onDownloadImage()">Download Meme</button>
+						<i onclick="onUploadImg()" class="fa-brands fa-facebook"></i>
 					</div>
 				</aside>
 			</section>
 		</main>
-
+		<script
+			src="https://kit.fontawesome.com/b3200a873f.js"
+			crossorigin="anonymous"
+		></script>
 		<script src="js/service/gallery.service.js"></script>
 		<script src="js/service/meme.service.js"></script>
 		<script src="js/gallery.controller.js"></script>

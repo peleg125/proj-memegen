@@ -18,6 +18,9 @@
 	.image-selector img {
 		width: 80px;
 	}
+	.fa-facebook {
+		margin-block-start: 0;
+	}
 }
 
 @media (max-width: 920px) {

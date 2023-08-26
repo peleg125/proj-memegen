@@ -316,7 +316,7 @@ function resizeCanvasContainer() {
 }
 
 function handleMove(ev) {
-
+	ev.preventDefault()
 	let offsetX, offsetY
 	if (ev.type === "touchmove") {
 		const rect = ev.target.getBoundingClientRect()
@@ -342,7 +342,6 @@ function handleMove(ev) {
 }
 
 function handleUp(ev) {
-	ev.preventDefault()
 	isDragging = false
 }
 
@@ -366,4 +365,30 @@ function handleDown(ev) {
 		dragStartY = offsetY
 		gMeme.selectedLineIdx = clickedLineIdx
 	}
+}
+
+
+function doUploadImg(imgDataUrl, onSuccess) {
+	const formData = new FormData()
+	formData.append("img", imgDataUrl)
+
+	const XHR = new XMLHttpRequest()
+	XHR.onreadystatechange = () => {
+		if (XHR.readyState !== XMLHttpRequest.DONE) return
+
+		if (XHR.status !== 200) return console.error("Error uploading image")
+		const { responseText: url } = XHR
+		console.log("Got back live url:", url)
+		onSuccess(url)
+	}
+	XHR.onerror = (req, ev) => {
+		console.error(
+			"Error connecting to server with request:",
+			req,
+			"\nGot response data:",
+			ev
+		)
+	}
+	XHR.open("POST", "//ca-upload.com/here/upload.php")
+	XHR.send(formData)
 }
