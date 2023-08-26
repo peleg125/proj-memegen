@@ -367,7 +367,6 @@ function handleDown(ev) {
 	}
 }
 
-
 function doUploadImg(imgDataUrl, onSuccess) {
 	const formData = new FormData()
 	formData.append("img", imgDataUrl)
@@ -391,4 +390,69 @@ function doUploadImg(imgDataUrl, onSuccess) {
 	}
 	XHR.open("POST", "//ca-upload.com/here/upload.php")
 	XHR.send(formData)
+}
+function saveImage() {
+	if (gMeme.selectedImgId) {
+		const img = new Image()
+
+		img.onload = function () {
+			gElCanvas.width = img.width
+			gElCanvas.height = img.height
+			const ctx = gElCanvas.getContext("2d")
+			ctx.drawImage(img, 0, 0)
+
+			const textLines = gMeme.lines.map((line) => ({
+				txt: line.txt,
+				size: line.size,
+				color: line.color,
+				align: line.align,
+				x: line.x,
+				y: line.y,
+			}))
+
+			const imageDataURL = gElCanvas.toDataURL("image/png")
+			const imageName = prompt("Enter a name for the image:")
+
+			if (imageName) {
+				const savedImages =
+					JSON.parse(localStorage.getItem("savedImages")) || []
+				savedImages.push({
+					name: imageName,
+					dataURL: imageDataURL,
+					textLines: textLines,
+				})
+				localStorage.setItem("savedImages", JSON.stringify(savedImages))
+				alert("Image saved!")
+			}
+		}
+
+		img.src = gImgs.find((img) => img.id === gMeme.selectedImgId).url
+	}
+}
+function loadImage() {
+	const loadName = prompt("Enter the name of the saved image:")
+	if (loadName) {
+		const savedImagesJSON = localStorage.getItem("savedImages")
+		if (savedImagesJSON) {
+			const savedImages = JSON.parse(savedImagesJSON)
+			const savedImage = savedImages.find((image) => image.name === loadName)
+			if (savedImage) {
+				const img = new Image()
+				img.onload = function () {
+					gElCanvas.width = img.width
+					gElCanvas.height = img.height
+					gCtx.drawImage(img, 0, 0)
+
+					gMeme.lines = savedImage.textLines
+
+					renderCanvas()
+				}
+				img.src = savedImage.dataURL
+			} else {
+				alert("Image not found.")
+			}
+		} else {
+			alert("No saved images found.")
+		}
+	}
 }
