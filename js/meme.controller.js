@@ -92,10 +92,10 @@ function onUploadImg() {
 
 	doUploadImg(imgDataUrl, onSuccess)
 }
-function onSaveImage(){
+function onSaveImage() {
 	saveImage()
 }
 
-function onLoadImage(){
+function onLoadImage() {
 	loadImage()
 }
