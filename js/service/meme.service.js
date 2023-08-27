@@ -1,5 +1,5 @@
 // Your global variables
-var gImgs = [
+let gImgs = [
 	{ id: 1, url: "img/1.jpg", keywords: ["funny", "cat"] },
 	{ id: 2, url: "img/2.jpg", keywords: ["funny"] },
 	{ id: 3, url: "img/3.jpg", keywords: ["cat"] },
@@ -12,16 +12,16 @@ var gImgs = [
 	{ id: 10, url: "img/10.jpg", keywords: ["cat"] },
 	{ id: 11, url: "img/11.jpg", keywords: ["cat"] },
 ]
-var gMeme = {
+let gMeme = {
 	selectedImgId: null,
 	selectedLineIdx: null,
 	lines: [],
 }
 let isDragging = false
 let dragStartX, dragStartY
-var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
-var gElCanvas
-var gCtx
+let gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
+let gElCanvas
+let gCtx
 
 function getMeme() {
 	return gMeme
@@ -427,6 +427,14 @@ function loadImage() {
 		} else {
 			alert("No saved images found.")
 		}
+	}
+}
+function deleteImage() {
+	const userInput = prompt("Please enter meme name")
+	if (userInput) {
+		removeSavedMemeByName("savedMemes", userInput)
+	} else {
+		alert("No user input!")
 	}
 }
 

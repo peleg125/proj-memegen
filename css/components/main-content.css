@@ -6,10 +6,8 @@
 	max-width: 100%;
 	height: auto;
 
-	border: 1px solid #ccc;
-	border-radius: 8px;
 	padding: 10px;
-	background-color: var(--clrPrimary2);
+	background-color: var(--clrPrimary1);
 }
 
 .responsive-canvas {

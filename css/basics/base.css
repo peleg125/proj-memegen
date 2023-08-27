@@ -3,7 +3,9 @@
 }
 html {
 	background-color: var(--primary);
+	color: var(--clrPrimary-3);
 }
 h2 {
-	color: var(--clrPrimary2);
+	color: var(--clrPrimary-2);
+	font-size: 2em;
 }

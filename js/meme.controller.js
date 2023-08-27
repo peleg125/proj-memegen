@@ -44,7 +44,6 @@ function addEventListeners() {
 	gElCanvas.addEventListener("touchstart", onHandleDown)
 	gElCanvas.addEventListener("touchmove", onHandleMove)
 	gElCanvas.addEventListener("touchend", onHandleUp)
-	// window.addEventListener("resize", handleResizeCanvasContainer)
 }
 
 function onHandleDown(ev) {
@@ -99,11 +98,15 @@ function onSaveImage() {
 function onLoadImage() {
 	loadImage()
 }
+function onDeleteImage() {
+	deleteImage()
+}
 
 function onDeleteLine() {
 	deleteLine()
 }
 function canvasClick(ev) {
+	console.log("click")
 	const { offsetX, offsetY } = ev
 	const clickedLineIdx = getClickedLineIdx(offsetX, offsetY)
 	const selectedLine = gMeme.lines[gMeme.selectedLineIdx]

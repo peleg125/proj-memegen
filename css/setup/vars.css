@@ -1,9 +1,11 @@
 :root {
-	--clrPrimary2: #eaf2f5;
-	--clrPrimary1: #8196bb;
+	--clrPrimary2: #344e41;
+	--clrPrimary1: #f4a261;
 	--clrPrimary: #242748;
-	--clrPrimary-1: #cd3c18;
-	--clrPrimary-2: #f2456e;
+	--clrPrimary-1: #e3d5ca;
+	--clrPrimary-2: #e3d5ca;
+	--clrPrimary-3: #ffffff;
+
 	/* --container-bg-color: lightslategray;
 	--lane-container-bg-color: #d3d3d34f;
 	--canvas-lane-bg-color: #ffffff;

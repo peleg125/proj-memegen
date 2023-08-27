@@ -5,8 +5,7 @@ i,
 	align-items: center;
 	background-color: var(--clrPrimary2);
 	padding: 0.65em;
-	border: 2px solid var(--clrPrimary-2);
-	border-radius: 10px;
+	border-radius: 0.875em;
 }
 i,
 .buttons button {
@@ -18,6 +17,7 @@ i,
 	border: none;
 	cursor: pointer;
 	background-size: contain;
+	border-radius: 0.875em;
 }
 i,
 .sticker-buttons {
@@ -40,7 +40,7 @@ i,
 input[type="color"],
 input[type="button"],
 input[type="Font"] {
-	background-color: var(--clrPrimary-2);
+	background-color: var(--clrPrimary-3);
 }
 select {
 	text-align: center;
