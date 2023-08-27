@@ -7,12 +7,15 @@
 	.controls-lane {
 		width: 100%;
 	}
+
 	.controls-lane {
 		align-items: center;
 	}
+
 	.image-selector {
 		padding: 10px;
 	}
+
 	.buttons {
 		flex-direction: row;
 		flex-wrap: wrap;
@@ -20,10 +23,12 @@
 		padding: 0px;
 		border-radius: 0px;
 	}
+
 	.buttons button,
 	.image-selector img {
 		margin: 10px;
 	}
+
 	.image-selector img {
 		width: 80px;
 	}
@@ -42,27 +47,31 @@
 	.lane-container {
 		grid-template-columns: 1fr;
 	}
+
 	.canvas-lane,
 	.controls-lane {
 		width: 100%;
 	}
+
 	.buttons {
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;
 	}
+
 	.image-selector {
 		grid-auto-flow: row;
 		grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
 	}
+
 	.image-selector img {
 		width: 100%;
 	}
 }
 
-@media (min-width: 980px) {
+@media (min-width: 940px) {
 	.container {
-		grid-template-columns: minmax(20px, 1fr) minmax(auto, 600px) minmax(
+		grid-template-columns: minmax(20px, 1fr) minmax(auto, 980px) minmax(
 				20px,
 				1fr
 			);
@@ -73,18 +82,24 @@
 	.container > *.full {
 		grid-column: 1/-1;
 	}
-	.container .lane-container {
+
+	.lane-container {
 		grid-template-columns: 5fr 2fr;
 	}
+
 	.canvas-lane {
-		width: 80%;
+		width: auto;
+		min-width: 0;
 	}
+
 	.controls-lane {
 		width: 20%;
 	}
+
 	.main-header {
 		grid-column: 1/-1;
 	}
+
 	.image-selector img:hover {
 		padding: 0.865em;
 	}

@@ -6,10 +6,10 @@
 @import url("setup/vars.css");
 
 /* CONPONENTS */
-
 @import url("components/buttons.css");
 @import url("components/img.css");
 @import url("components/main-content.css");
 @import url("components/main-header.css");
+
 /* media query */
 @import url("setup/mq.css");

@@ -1,4 +1,3 @@
-// Your global variables
 let gImgs = [
 	{ id: 1, url: "img/1.jpg", keywords: ["funny", "cat"] },
 	{ id: 2, url: "img/2.jpg", keywords: ["funny"] },
@@ -20,8 +19,6 @@ let gMeme = {
 let isDragging = false
 let dragStartX, dragStartY
 let gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
-let gElCanvas
-let gCtx
 
 function getMeme() {
 	return gMeme
@@ -125,6 +122,7 @@ function setColor(color) {
 
 function decreaseFontSize() {
 	if (gMeme.selectedLineIdx !== null && gMeme.lines[gMeme.selectedLineIdx]) {
+		if (gMeme.lines[gMeme.selectedLineIdx].size <= 30) return
 		gMeme.lines[gMeme.selectedLineIdx].size -= 5
 		renderCanvas()
 	}
@@ -137,6 +135,7 @@ function imgSelect(imgId) {
 
 function increaseFontSize() {
 	if (gMeme.selectedLineIdx !== null && gMeme.lines[gMeme.selectedLineIdx]) {
+		if (gMeme.lines[gMeme.selectedLineIdx].size >= 70) return
 		gMeme.lines[gMeme.selectedLineIdx].size += 5
 		renderCanvas()
 	}
@@ -285,7 +284,6 @@ function resizeCanvasContainer() {
 	gElCanvas.height = newHeight
 
 	renderCanvas()
-	// renderSelectedImage()
 	canvasContainer.style.width = `${containerWidth}px`
 	canvasContainer.style.height = `${newHeight}px`
 }
