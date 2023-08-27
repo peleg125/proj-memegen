@@ -9,7 +9,7 @@
 	border: 1px solid #ccc;
 	border-radius: 8px;
 	padding: 10px;
-	background-color: var(--canvas-lane-bg-color);
+	background-color: var(--clrPrimary2);
 }
 
 .responsive-canvas {

@@ -1,35 +1,38 @@
 /* Flexbox Helpers */
 .flex {
-    display: flex;
+	display: flex;
 }
 
 .flex-column {
-    flex-direction: column;
+	flex-direction: column;
 }
 
 .flex-start {
-    align-items: flex-start;
+	align-items: flex-start;
 }
 
 /* Grid Helpers */
 .grid {
-    display: grid;
+	display: grid;
 }
 
 .grid-auto-flow-column {
-    grid-auto-flow: column;
+	grid-auto-flow: column;
 }
 
 .grid-auto-flow-row {
-    grid-auto-flow: row;
+	grid-auto-flow: row;
 }
 
 /* Text Alignment Helpers */
 .text-center {
-    text-align: center;
+	text-align: center;
 }
 
 /* Other Helpers */
 .self-center {
-    place-self: center;
+	place-self: center;
+}
+.items-center {
+	place-items: center;
 }

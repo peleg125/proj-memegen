@@ -1,15 +1,23 @@
 @media (max-width: 600px) {
 	.lane-container {
 		grid-template-columns: 1fr;
+		padding: 0px;
 	}
 	.canvas-lane,
 	.controls-lane {
 		width: 100%;
 	}
+	.controls-lane {
+		align-items: center;
+	}
+	.image-selector {
+		padding: 10px;
+	}
 	.buttons {
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;
+		padding: 0px;
 	}
 	.buttons button,
 	.image-selector img {
@@ -20,6 +28,11 @@
 	}
 	.fa-facebook {
 		margin-block-start: 0;
+	}
+}
+@media (max-width: 919px) {
+	.controls-lane {
+		align-items: center;
 	}
 }
 

@@ -1,3 +1,9 @@
 * {
 	box-sizing: border-box;
 }
+html {
+	background-color: var(--primary);
+}
+h2 {
+	color: var(--clrPrimary2);
+}

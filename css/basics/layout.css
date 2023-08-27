@@ -4,7 +4,7 @@
 	align-items: center;
 	padding: 20px;
 	place-items: center;
-	background-color: var(--container-bg-color);
+	background-color: var(--clrPrimary);
 	text-align: center;
 }
 
@@ -15,5 +15,5 @@
 	width: 100%;
 	padding: 20px;
 	border-radius: 8px;
-	background-color: var(--lane-container-bg-color);
+	background-color: var(--clrPrimary1);
 }

@@ -4,6 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/x-icon" href="favicon/favicon.ico" />
 		<link
 			rel="stylesheet"
 			X-Content-Type-Options:
@@ -11,6 +12,10 @@
 			href="css/main.css"
 		/>
 		<title>Meme Generator</title>
+		<script
+			src="https://kit.fontawesome.com/b3200a873f.js"
+			crossorigin="anonymous"
+		></script>
 	</head>
 	<body onload="onInit()">
 		<header class="main-header text-center">
@@ -50,33 +55,61 @@
 							placeholder="Text here"
 							oninput="onLineTextInput(this.value)"
 						/>
-						<button type="button" class="addTextBtn" onclick="onAddText(this)">
+						<button
+							type="button"
+							id="textToAdd"
+							class="addTextBtn"
+							onclick="onAddText(this)"
+						>
 							Add Text
 						</button>
 					</form>
 
 					<div class="buttons flex flex-column">
-						<i onclick="onIncreaseFontSize()" class="fa-regular fa-plus"></i>
-						<i onclick="onDecreaseFontSize()" class="fa-solid fa-minus"></i>
+						<div class="flex">
+							<i
+								role="button"
+								aria-label="Increase Font Size"
+								onclick="onIncreaseFontSize()"
+								class="fa-regular fa-plus"
+							></i>
+							<i
+								role="button"
+								aria-label="Decrease Font Size"
+								onclick="onDecreaseFontSize()"
+								class="fa-solid fa-minus"
+							></i>
+						</div>
 						<input
 							type="color"
 							id="textColorPicker"
 							onchange="onSetColor(this.value)"
 							value="#f6b73c"
 						/>
-						<button onclick="onTextAlign('left')">left</button>
-						<button onclick="onTextAlign('center')">Center</button>
-						<button onclick="onTextAlign('right')">right</button>
-						<label for="fontSelector">Font: </label>
-						<select id="fontSelector" onchange="onChangeFont(this.value)">
-							<option value="Arial">Arial</option>
-							<option value="Verdana">Verdana</option>
-							<option value="Times New Roman">Times New Roman</option>
-							<option value="Courier New">Courier New</option>
-							<option value="Impact">Impact</option>
-						</select>
-						<button onclick="onSaveImage()">Save Image</button>
-						<button onclick="onLoadImage()">Load Image</button>
+						<div class="flex">
+							<button onclick="onTextAlign('left')">left</button>
+							<button onclick="onTextAlign('center')">Center</button>
+							<button onclick="onTextAlign('right')">right</button>
+						</div>
+						<div class="flex items-center text-center">
+							<label for="fontSelector">Font: </label>
+							<select
+								id="fontSelector"
+								type="Font"
+								onchange="onChangeFont(this.value)"
+							>
+								<option value="Arial">Arial</option>
+								<option value="Verdana">Verdana</option>
+								<option value="Times New Roman">Times New Roman</option>
+								<option value="Courier New">Courier New</option>
+								<option value="Impact">Impact</option>
+							</select>
+						</div>
+						<div class="flex">
+							<button onclick="onSaveImage()">Save Image</button>
+							<button onclick="onLoadImage()">Load Image</button>
+						</div>
+
 						<div class="sticker-buttons flex">
 							<button class="sticker-button" onclick="onAddSticker('😄')">
 								😄
@@ -91,23 +124,20 @@
 								😂
 							</button>
 						</div>
-						<button onclick="onDeleteLine()">Delete Line</button>
-						<button onclick="onToggleBold()">Toggle Bold</button>
+						<div class="flex">
+							<button onclick="onDeleteLine()">Delete Line</button>
+							<button onclick="onToggleBold()">Toggle Bold</button>
+						</div>
 						<button onclick="onDownloadImage()">Download Meme</button>
 						<i onclick="onUploadImg()" class="fa-brands fa-facebook"></i>
 					</div>
 				</aside>
 			</section>
 		</main>
-		<script
-			src="https://kit.fontawesome.com/b3200a873f.js"
-			crossorigin="anonymous"
-		></script>
+
 		<script src="js/service/utils.service.js"></script>
 		<script src="js/service/storage.service.js"></script>
-		<script src="js/service/gallery.service.js"></script>
 		<script src="js/service/meme.service.js"></script>
-		<script src="js/gallery.controller.js"></script>
 		<script src="js/meme.controller.js"></script>
 	</body>
 </html>

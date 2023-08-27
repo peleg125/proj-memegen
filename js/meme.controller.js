@@ -44,7 +44,7 @@ function addEventListeners() {
 	gElCanvas.addEventListener("touchstart", onHandleDown)
 	gElCanvas.addEventListener("touchmove", onHandleMove)
 	gElCanvas.addEventListener("touchend", onHandleUp)
-	window.addEventListener("resize", handleResizeCanvasContainer)
+	// window.addEventListener("resize", handleResizeCanvasContainer)
 }
 
 function onHandleDown(ev) {
@@ -68,7 +68,7 @@ function onSelectImage(id) {
 	selectImage(id)
 }
 
-function onAddText(elText) {
+function onAddText(elText, ev) {
 	addText(elText)
 }
 
@@ -98,4 +98,25 @@ function onSaveImage() {
 
 function onLoadImage() {
 	loadImage()
+}
+
+function onDeleteLine() {
+	deleteLine()
+}
+function canvasClick(ev) {
+	const { offsetX, offsetY } = ev
+	const clickedLineIdx = getClickedLineIdx(offsetX, offsetY)
+	const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+	const textInput = document.getElementById("textToAdd")
+	const colorInput = document.getElementById("textColorPicker")
+	if (clickedLineIdx !== -1) {
+		gMeme.selectedLineIdx = clickedLineIdx
+		textInput.value = selectedLine.txt
+		colorInput.value = selectedLine.color
+		renderCanvas()
+	} else {
+		textInput.value = ""
+		gMeme.selectedLineIdx = null
+		renderCanvas()
+	}
 }

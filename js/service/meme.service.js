@@ -64,14 +64,6 @@ function setSelectedLine(x, y) {
 	}
 }
 
-function onDeleteLine() {
-	if (gMeme.selectedLineIdx !== null) {
-		gMeme.lines.splice(gMeme.selectedLineIdx, 1)
-		gMeme.selectedLineIdx = null
-		renderCanvas()
-	}
-}
-
 function onDownloadImage() {
 	const canvasData = gElCanvas.toDataURL("image/png")
 
@@ -272,23 +264,7 @@ function addText() {
 
 	textInput.value = ""
 }
-function canvasClick(ev) {
-	const { offsetX, offsetY } = ev
-	const clickedLineIdx = getClickedLineIdx(offsetX, offsetY)
-	const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
-	const textInput = document.getElementById("textToAdd")
-	const colorInput = document.getElementById("textColorPicker")
-	if (clickedLineIdx !== -1) {
-		gMeme.selectedLineIdx = clickedLineIdx
-		textInput.value = selectedLine.txt
-		colorInput.value = selectedLine.color
-		renderCanvas()
-	} else {
-		textInput.value = ""
-		gMeme.selectedLineIdx = null
-		renderCanvas()
-	}
-}
+
 function toggleBold() {
 	if (gMeme.selectedLineIdx !== null && gMeme.lines[gMeme.selectedLineIdx]) {
 		const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
@@ -451,5 +427,13 @@ function loadImage() {
 		} else {
 			alert("No saved images found.")
 		}
+	}
+}
+
+function deleteLine() {
+	if (gMeme.selectedLineIdx !== null) {
+		gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+		gMeme.selectedLineIdx = null
+		renderCanvas()
 	}
 }
