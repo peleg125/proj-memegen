@@ -21,11 +21,6 @@
 		border-radius: 0px;
 	}
 
-	.buttons button,
-	.image-selector img {
-		margin: 10px;
-	}
-
 	.image-selector img {
 		width: 80px;
 	}
