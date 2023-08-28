@@ -58,7 +58,7 @@
 
 	.image-selector {
 		grid-auto-flow: row;
-		grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
 	}
 
 	.image-selector img {

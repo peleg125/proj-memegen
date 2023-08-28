@@ -107,7 +107,6 @@ function onDeleteLine() {
 	deleteLine()
 }
 function canvasClick(ev) {
-	console.log("click")
 	const { offsetX, offsetY } = ev
 	const clickedLineIdx = getClickedLineIdx(offsetX, offsetY)
 	const selectedLine = gMeme.lines[gMeme.selectedLineIdx]

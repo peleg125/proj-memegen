@@ -47,8 +47,8 @@ function switchLine() {
 }
 
 function setSelectedLine(x, y) {
-	for (var i = 0; i < gMeme.lines.length; i++) {
-		var line = gMeme.lines[i]
+	for (let i = 0; i < gMeme.lines.length; i++) {
+		let line = gMeme.lines[i]
 		if (
 			x >= line.x &&
 			x <= line.x + line.width &&

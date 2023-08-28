@@ -1,11 +1,11 @@
 "use strict"
 
 function makeId(length = 6) {
-	var id = ""
-	var possible =
+	let id = ""
+	let possible =
 		"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 
-	for (var i = 0; i < length; i++) {
+	for (let i = 0; i < length; i++) {
 		id += possible.charAt(getRandomInt(0, possible.length))
 	}
 
