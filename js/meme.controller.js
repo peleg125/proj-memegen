@@ -107,19 +107,20 @@ function onDeleteLine() {
 	deleteLine()
 }
 function canvasClick(ev) {
+	const meme = getMeme()
 	const { offsetX, offsetY } = ev
 	const clickedLineIdx = getClickedLineIdx(offsetX, offsetY)
-	const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+	const selectedLine = meme.lines[meme.selectedLineIdx]
 	const textInput = document.getElementById("textToAdd")
 	const colorInput = document.getElementById("textColorPicker")
 	if (clickedLineIdx !== -1) {
-		gMeme.selectedLineIdx = clickedLineIdx
+		meme.selectedLineIdx = clickedLineIdx
 		textInput.value = selectedLine.txt
 		colorInput.value = selectedLine.color
 		renderCanvas()
 	} else {
 		textInput.value = ""
-		gMeme.selectedLineIdx = null
+		meme.selectedLineIdx = null
 		renderCanvas()
 	}
 }
